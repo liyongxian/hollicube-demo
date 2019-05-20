@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hollicube-demo
+  namespace: jenkins
+spec:
+  selector:
+    app: hollicube-demo
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hollicube-demo
+  namespace: jenkins
+  labels:
+    app: hollicube-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hollicube-demo
+  template:
+    metadata:
+      labels:
+        app: hollicube-demo
+    spec:
+      containers:
+      - name: hollicube-demo
+        image: registry.cn-beijing.aliyuncs.com/hiacloud/hollicube-demo:v1.0.0
+        ports:
+        - containerPort: 8090
