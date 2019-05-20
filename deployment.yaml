@@ -34,3 +34,18 @@ spec:
         image: registry.cn-beijing.aliyuncs.com/hiacloud/hollicube-demo:v1.0.0
         ports:
         - containerPort: 8090
+-----
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hollicube-demo
+  namespace: jenkins
+spec:
+  rules:
+  - host: hollicube-demo.hollicube.com
+    http:
+      paths:
+      - backend:
+          serviceName: hollicube-demo
+          servicePort: 8090
+        path: /
