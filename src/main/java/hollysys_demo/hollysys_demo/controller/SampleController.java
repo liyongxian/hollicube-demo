@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleController {
 	@RequestMapping("/")
     String home() {
-        return "Hello China Hangzhou";
+        return "Hello China Hangzhou,北京，天安门";
     }
 }
 
